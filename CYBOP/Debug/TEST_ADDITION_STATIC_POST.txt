@@ -1,0 +1,3 @@
+[selected_node] | element/part | 
++-sum | number/integer | 16
++-summand | number/integer | 4
