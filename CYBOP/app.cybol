@@ -1,0 +1,7 @@
+
+<node>
+  <!-- Init Data -->
+  <node name="data" channel="file" format="element/part" model="CYBOP/Model/data.cybol" />
+  <!-- Init Logic -->
+  <node name="logic" channel="file" format="element/part" model="CYBOP/Logic/add.cybol" />
+</node>

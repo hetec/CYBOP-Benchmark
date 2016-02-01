@@ -1,0 +1,7 @@
+[selected_node] | element/part | 
++-data | element/part | 
+| +-test | number/integer | 0
+| +-counter_start_value | number/integer | 0
+| +-limit_outer | number/integer | 100
+| +-limit_inner | number/integer | 10
+| +-limit_divider | number/integer | 3

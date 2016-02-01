@@ -1,5 +1,5 @@
 <!--
-    Copyright (C) 1999-2015. Christian Heller.
+    Copyright (C) 1999-2016. Christian Heller.
 
     This knowledge model uses the Cybernetics Oriented Language (CYBOL).
 
@@ -24,69 +24,43 @@
 -->
 
 <!--
-    This example uses a small domain model that contains three integer values,
-    which are needed for the addition operation.
-    The domain model resides externally, in an own cybol file.
-    It gets created and added to the runtime knowledge tree automatically,
-    when using the "receive" operation and specifying "text/cybol" as data format.
-    Then follows the addition and result printing on screen.
+    Program Description
 -->
 
 <node>
-    <!-- Create node for domain data Holder -->
-    <node name="create_domain" channel="inline" format="memorise/create" model="">
-        <node name="name" channel="inline" format="text/plain" model="domain"/>
-        <node name="format" channel="inline" format="meta/format" model="element/part"/>
-        <node name="element" channel="inline" format="text/plain" model="part"/>
-    </node>
-    <!-- Load Domain Data -->
-    <node name="initialise_domain" channel="inline" format="communicate/receive" model="">
-        <node name="channel" channel="inline" format="meta/channel" model="file"/>
-        <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
-        <node name="language" channel="inline" format="meta/language" model="text/cybol"/>
-        <!-- CAUTION! The format HAS TO BE of type "meta/format". The cybol mime type is of interest, not the cyboi-internal runtime type. -->
-        <node name="format" channel="inline" format="meta/format" model="element/part"/>
-        <!-- CAUTION! The message HAS TO BE of type "text/plain". It gets converted using the "type" property. -->
-        <node name="sender" channel="inline" format="text/plain" model="Model/domain.cybol"/>
-        <node name="message" channel="inline" format="path/knowledge" model=".domain"/>
-    </node>
-    <!-- DEBUG - INFOS : Write knowledge tree into file. -->
-    <node name="test_knowledge_tree_1" channel="inline" format="communicate/send" model="">
-        <node name="channel" channel="inline" format="meta/channel" model="file"/>
-        <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
-        <node name="language" channel="inline" format="meta/language" model="text/model-diagram"/>
-        <node name="format" channel="inline" format="meta/format" model="element/part"/>
-        <node name="message" channel="inline" format="path/knowledge" model=".domain"/>
-        <node name="receiver" channel="inline" format="text/plain" model="Debug/TEST_ADDITION_STATIC_PRE.txt"/>
-    </node>
-    <!-- Operation -->
-    <node name="add_operand" channel="inline" format="calculate/multiply" model="">
-        <node name="result" channel="inline" format="path/knowledge" model=".domain.sum"/>
-        <node name="operand" channel="inline" format="path/knowledge" model=".domain.summand"/>
-        <node name="type" channel="inline" format="meta/type" model="number/integer"/>
-    </node>
-    <!-- DEBUG - INFOS : Write knowledge tree into file. -->
-    <node name="test_knowledge_tree_2" channel="inline" format="communicate/send" model="">
-        <node name="channel" channel="inline" format="meta/channel" model="file"/>
-        <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
-        <node name="language" channel="inline" format="meta/language" model="text/model-diagram"/>
-        <node name="format" channel="inline" format="meta/format" model="element/part"/>
-        <node name="message" channel="inline" format="path/knowledge" model=".domain"/>
-        <node name="receiver" channel="inline" format="text/plain" model="Debug/TEST_ADDITION_STATIC_POST.txt"/>
-    </node>
-    <!-- Start Terminal -->
-    <node name="startup_terminal" channel="inline" format="maintain/startup" model="">
-        <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
-    </node>
-    <!-- Print Values -->
-    <node name="print_result" channel="inline" format="communicate/send" model="">
-        <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
-        <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
-        <node name="language" channel="inline" format="meta/language" model="message/cli"/>
-        <node name="format" channel="inline" format="meta/format" model="number/integer"/>
-        <node name="message" channel="inline" format="path/knowledge" model=".domain.sum"/>
-        <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
-    </node>
-    <!-- Exit Program -->
-    <node name="exit_application" channel="inline" format="live/exit" model=""/>
+  
+  <node name="startup_terminal" channel="inline" format="maintain/startup" model="">
+    <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
+  </node>
+    
+  <node name="create_app" channel="inline" format="memorise/create" model="">
+    <node name="name" channel="inline" format="text/plain" model="app"/>
+    <node name="format" channel="inline" format="meta/format" model="element/part"/>
+    <node name="element" channel="inline" format="text/plain" model="part"/>
+  </node>
+    
+  <node name="initialise_app" channel="inline" format="communicate/receive" model="">
+    <node name="channel" channel="inline" format="meta/channel" model="file"/>
+    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
+    <node name="language" channel="inline" format="meta/language" model="text/cybol"/>
+    <node name="format" channel="inline" format="meta/format" model="element/part"/>
+    <node name="sender" channel="inline" format="text/plain" model="CYBOP/app.cybol"/>
+    <node name="message" channel="inline" format="path/knowledge" model=".app"/>
+  </node>
+    
+  <!-- DEBUG - INFOS : Write knowledge tree into file. -->
+  <node name="test_knowledge_tree_1" channel="inline" format="communicate/send" model="">
+    <node name="channel" channel="inline" format="meta/channel" model="file"/>
+    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
+    <node name="language" channel="inline" format="meta/language" model="text/model-diagram"/>
+    <node name="format" channel="inline" format="meta/format" model="element/part"/>
+    <node name="message" channel="inline" format="path/knowledge" model=".app"/>
+    <node name="receiver" channel="inline" format="text/plain" model="CYBOP/Debug/TEST_RUN_POST.txt"/>
+  </node>
+    
+  <node name="add" channel="inline" format="flow/sequence" model="">
+      <node name="model" channel="inline" format="path/knowledge" model=".app.logic"/>
+  </node>
+    
+  <node name="exit_application" channel="inline" format="live/exit" model=""/>
 </node>
