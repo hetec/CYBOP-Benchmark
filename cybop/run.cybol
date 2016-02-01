@@ -18,9 +18,13 @@
     <node name="sender" channel="inline" format="text/plain" model="cybop/app.cybol"/>
     <node name="message" channel="inline" format="path/knowledge" model=".app"/>
   </node>
-  <!-- init app logic -->
+  <!-- call div method -->
+  <node name="div" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_div"/>
+  </node>
+  <!-- call add method -->
   <node name="add" channel="inline" format="flow/sequence" model="">
-      <node name="model" channel="inline" format="path/knowledge" model=".app.logic"/>
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_add"/>
   </node>
   <!-- exit application -->
   <node name="exit_application" channel="inline" format="live/exit" model=""/>
