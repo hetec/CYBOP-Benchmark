@@ -1,9 +1,9 @@
 [selected_node] | element/part | 
-+-test | number/integer | -34
-+-counter_start_outer_value | number/integer | 100
-+-counter_start_inner_value | number/integer | 11
++-test | number/integer | 0
++-counter_start_outer_value | number/integer | 0
++-counter_start_inner_value | number/integer | 0
 +-limit_outer | number/integer | 100
 +-limit_inner | number/integer | 10
 +-limit_divider | number/integer | 3
 +-break_outer | logicvalue/boolean | false
-+-break_inner | logicvalue/boolean | true
++-break_inner | logicvalue/boolean | false

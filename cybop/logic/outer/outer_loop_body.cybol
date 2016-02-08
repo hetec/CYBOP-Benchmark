@@ -1,0 +1,42 @@
+<node>
+  <!-- call div method -->
+  <node name="div" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_div"/>
+  </node>
+  <!-- call add method -->
+  <node name="add" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_add"/>
+  </node>
+  <!-- call sub method -->
+  <node name="sub" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_sub"/>
+  </node>
+  <!-- call abs method -->
+  <node name="abs" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_abs"/>
+  </node>
+  <!-- call mul method -->
+  <node name="mul" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_mul"/>
+  </node>
+  <!-- call inner loop method -->
+  <node name="inner_loop" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_inner_loop"/>
+  </node>
+  
+  <!-- increment outer loop counter -->
+  <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_outer_value"/>
+    <node name="operand" channel="inline" format="number/integer" model="1"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
+  <!-- CAUTION! The break condition has to be GREATER-tested AFTER having incremented the loop index, since this is a post-test loop. -->
+  <node name="compare_loop_count" channel="inline" format="compare/greater" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.break_outer"/>
+    <node name="left" channel="inline" format="path/knowledge" model=".app.data.counter_start_outer_value"/>
+    <node name="right" channel="inline" format="path/knowledge" model=".app.data.limit_outer"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+    <node name="selection" channel="inline" format="text/plain" model="all"/>
+  </node>
+</node>
