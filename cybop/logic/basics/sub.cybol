@@ -5,6 +5,7 @@
     <node name="operand" channel="inline" format="path/knowledge" model=".app.data.limit_outer"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
   </node>
+  
   <!-- Print Values -->
   <!--<node name="print_result" channel="inline" format="communicate/send" model="">
     <node name="channel" channel="inline" format="meta/channel" model="terminal"/>

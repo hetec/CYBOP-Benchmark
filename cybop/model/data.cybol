@@ -1,13 +1,28 @@
 <node>
+  <!-- temp loop result variable -->
   <node name="test" channel="inline" format="number/integer" model="0"/>
+  
+  <!-- used for div method -->
+  <node name="divider" channel="inline" format="number/integer" model="3"/>
+  
+  <!-- used for mod method -->
+  <node name="zero" channel="inline" format="number/integer" model="0"/>
+  <node name="modulo" channel="inline" format="number/integer" model="2"/>
+  <node name="modulo_result" channel="inline" format="number/integer" model="0"/>
+  <node name="modulo_result_eq_zero" channel="inline" format="logicvalue/boolean" model="false"/>
+  
   <!-- loop counter start values -->
   <node name="counter_start_outer_value" channel="inline" format="number/integer" model="0"/>
   <node name="counter_start_inner_value" channel="inline" format="number/integer" model="0"/>
+  
+  <!-- loop counter result -->
+  <node name="counter_outer_result" channel="inline" format="number/integer" model="0"/>
+  <node name="counter_inner_result" channel="inline" format="number/method" model="0"/>
+  
   <!-- loop counter max values -->
   <node name="limit_outer" channel="inline" format="number/integer" model="10000"/>
-  <node name="limit_inner" channel="inline" format="number/integer" model="10000"/>
-  <!-- used for div method -->
-  <node name="limit_divider" channel="inline" format="number/integer" model="3"/>
+  <node name="limit_inner" channel="inline" format="number/integer" model="1000"/>
+  
   <!-- loop break conditions -->
   <node name="break_outer" channel="inline" format="logicvalue/boolean" model="false"/>
   <node name="break_inner" channel="inline" format="logicvalue/boolean" model="false"/>

@@ -1,15 +1,15 @@
 <node>
   <!-- overwrite operation -->
   <node name="init_test" channel="inline" format="modify/overwrite" model="">
-    <node name="destination" channel="inline" format="path/knowledge" model=".app.data.test"/>
-    <node name="source" channel="inline" format="path/knowledge" model=".app.data.limit_outer"/>
+    <node name="destination" channel="inline" format="path/knowledge" model=".app.data.modulo_result"/>
+    <node name="source" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
   </node>
   
-  <!-- div operation -->
-  <node name="div_operand" channel="inline" format="calculate/divide" model="">
-    <node name="result" channel="inline" format="path/knowledge" model=".app.data.test"/>
-    <node name="operand" channel="inline" format="path/knowledge" model=".app.data.divider"/>
+  <!-- Operation -->
+  <node name="modulo" channel="inline" format="calculate/modulo" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.modulo_result"/>
+    <node name="operand" channel="inline" format="path/knowledge" model=".app.data.modulo"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
   </node>
   
@@ -19,7 +19,7 @@
     <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
     <node name="language" channel="inline" format="meta/language" model="message/cli"/>
     <node name="format" channel="inline" format="meta/format" model="number/integer"/>
-    <node name="message" channel="inline" format="path/knowledge" model=".app.data.test"/>
+    <node name="message" channel="inline" format="path/knowledge" model=".app.data.modulo_result"/>
     <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
   </node>-->
 </node>

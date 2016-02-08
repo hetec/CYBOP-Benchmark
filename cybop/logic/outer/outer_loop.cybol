@@ -7,6 +7,7 @@
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
     <node name="selection" channel="inline" format="text/plain" model="all"/>
   </node>
+  
   <!-- call outer loop body method -->
   <node name="print_numbers" channel="inline" format="flow/loop" model="">
     <node name="break" channel="inline" format="path/knowledge" model=".app.data.break_outer"/>

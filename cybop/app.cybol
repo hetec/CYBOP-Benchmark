@@ -1,16 +1,25 @@
 <node>
   <!-- init data -->
   <node name="data" channel="file" format="element/part" model="cybop/model/data.cybol"/>
+  
   <!-- init logic -->
   <node name="logic_add" channel="file" format="element/part" model="cybop/logic/basics/add.cybol"/>
   <node name="logic_div" channel="file" format="element/part" model="cybop/logic/basics/div.cybol"/>
   <node name="logic_sub" channel="file" format="element/part" model="cybop/logic/basics/sub.cybol"/>
   <node name="logic_abs" channel="file" format="element/part" model="cybop/logic/basics/abs.cybol"/>
   <node name="logic_mul" channel="file" format="element/part" model="cybop/logic/basics/mul.cybol"/>
+  <node name="logic_mod" channel="file" format="element/part" model="cybop/logic/basics/mod.cybol"/>
+  
   <!-- init inner loops -->
   <node name="logic_inner_loop" channel="file" format="element/part" model="cybop/logic/inner/inner_loop.cybol"/>
   <node name="logic_inner_loop_body" channel="file" format="element/part" model="cybop/logic/inner/inner_loop_body.cybol"/>
+  <node name="logic_inner_loop_body_if" channel="file" format="element/part" model="cybop/logic/inner/inner_loop_body_if.cybol"/>
+  <node name="logic_inner_loop_body_else" channel="file" format="element/part" model="cybop/logic/inner/inner_loop_body_else.cybol"/>
+  
   <!-- init outer loop -->
   <node name="logic_outer_loop" channel="file" format="element/part" model="cybop/logic/outer/outer_loop.cybol"/>
   <node name="logic_outer_loop_body" channel="file" format="element/part" model="cybop/logic/outer/outer_loop_body.cybol"/>
+  
+  <!-- init result -->
+  <node name="logic_result" channel="file" format="element/part" model="cybop/logic/result.cybol"/>
 </node>

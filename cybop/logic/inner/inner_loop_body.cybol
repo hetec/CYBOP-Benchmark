@@ -1,24 +1,22 @@
 <node>
-  <!--<node name="print_number" channel="inline" format="communicate/send" model="">
-    <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
-    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
-    <node name="language" channel="inline" format="meta/language" model="message/cli"/>
-    <node name="format" channel="inline" format="meta/format" model="number/integer"/>
-    <node name="message" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
-    <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
-  </node>-->
-  <!-- increment inner loop counter -->
-  <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
-    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
-    <node name="operand" channel="inline" format="number/integer" model="1"/>
-    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  <!-- call mod method -->
+  <node name="mod" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_mod"/>
   </node>
-  <!-- CAUTION! The break condition has to be GREATER-tested AFTER having incremented the loop index, since this is a post-test loop. -->
-  <node name="compare_loop_count" channel="inline" format="compare/greater" model="">
-    <node name="result" channel="inline" format="path/knowledge" model=".app.data.break_inner"/>
-    <node name="left" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
-    <node name="right" channel="inline" format="path/knowledge" model=".app.data.limit_inner"/>
+  
+  <!-- check mod result -->
+  <node name="compare_mod_result" channel="inline" format="compare/equal" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.modulo_result_eq_zero"/>
+    <node name="left" channel="inline" format="path/knowledge" model=".app.data.modulo_result"/>
+    <node name="right" channel="inline" format="path/knowledge" model=".app.data.zero"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
     <node name="selection" channel="inline" format="text/plain" model="all"/>
+  </node>
+  
+  <!-- if mod result equal 0, then print value -->
+  <node name="if-then" channel="inline" format="flow/branch" model="">
+    <node name="criterion" channel="inline" format="path/knowledge" model=".app.data.modulo_result_eq_zero"/>
+    <node name="true" channel="inline" format="path/knowledge" model=".app.logic_inner_loop_body_if"/>
+    <node name="false" channel="inline" format="path/knowledge" model=".app.logic_inner_loop_body_else"/>
   </node>
 </node>

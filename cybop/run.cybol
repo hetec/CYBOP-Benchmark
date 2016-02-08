@@ -3,12 +3,14 @@
   <node name="startup_terminal" channel="inline" format="maintain/startup" model="">
     <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
   </node>
+  
   <!-- create app node -->
   <node name="create_app" channel="inline" format="memorise/create" model="">
     <node name="name" channel="inline" format="text/plain" model="app"/>
     <node name="format" channel="inline" format="meta/format" model="element/part"/>
     <node name="element" channel="inline" format="text/plain" model="part"/>
   </node>
+  
   <!-- init app node -->
   <node name="initialise_app" channel="inline" format="communicate/receive" model="">
     <node name="channel" channel="inline" format="meta/channel" model="file"/>
@@ -24,30 +26,11 @@
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_outer_loop"/>
   </node>
   
-  <!-- call div method -->
-  <!--<node name="div" channel="inline" format="flow/sequence" model="">
-    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_div"/>
-  </node>-->
-  <!-- call add method -->
-  <!--<node name="add" channel="inline" format="flow/sequence" model="">
-    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_add"/>
-  </node>-->
-  <!-- call sub method -->
-  <!--<node name="sub" channel="inline" format="flow/sequence" model="">
-    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_sub"/>
-  </node>-->
-  <!-- call abs method -->
-  <!--<node name="abs" channel="inline" format="flow/sequence" model="">
-    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_abs"/>
-  </node>-->
-  <!-- call mul method -->
-  <!--<node name="mul" channel="inline" format="flow/sequence" model="">
-    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_mul"/>
-  </node>-->
-  <!-- call inner loop method -->
-  <!--<node name="inner_loop" channel="inline" format="flow/sequence" model="">
-    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_inner_loop"/>
-  </node>-->
+  <!-- call result method -->
+  <node name="outer_loop" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_result"/>
+  </node>
+  
   <!-- exit application -->
   <node name="exit_application" channel="inline" format="live/exit" model=""/>
 </node>

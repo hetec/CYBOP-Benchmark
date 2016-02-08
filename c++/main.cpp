@@ -20,7 +20,7 @@ double division(double a, double b) {
 }
 
 long absolute(long a) {
-  return a < 0 ? (a * -1) : a;  
+  return a < 0 ? (a * -1) : a;
 }
 
 void printValue(long value) {
@@ -31,7 +31,7 @@ void printValue(long value) {
 
 void innerLoop(long counter, long limit) {
   while (counter <= limit) {
-    counter++; 
+    counter++;
     printValue(counter);
   }
 }
