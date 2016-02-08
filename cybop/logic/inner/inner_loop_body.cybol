@@ -1,13 +1,13 @@
 <node>
-  <node name="print_number" channel="inline" format="communicate/send" model="">
+  <!--<node name="print_number" channel="inline" format="communicate/send" model="">
     <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
     <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
     <node name="language" channel="inline" format="meta/language" model="message/cli"/>
     <node name="format" channel="inline" format="meta/format" model="number/integer"/>
     <node name="message" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
     <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
-  </node>
-
+  </node>-->
+  <!-- increment inner loop counter -->
   <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
     <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
     <node name="operand" channel="inline" format="number/integer" model="1"/>

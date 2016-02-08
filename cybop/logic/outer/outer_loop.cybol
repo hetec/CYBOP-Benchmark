@@ -1,14 +1,4 @@
 <node>
-  <!-- DEBUG - INFOS : Write knowledge tree into file. -->
-  <node name="test_knowledge_tree_outer_loop_pre" channel="inline" format="communicate/send" model="">
-    <node name="channel" channel="inline" format="meta/channel" model="file"/>
-    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
-    <node name="language" channel="inline" format="meta/language" model="text/model-diagram"/>
-    <node name="format" channel="inline" format="meta/format" model="element/part"/>
-    <node name="message" channel="inline" format="path/knowledge" model=".app.data"/>
-    <node name="receiver" channel="inline" format="text/plain" model="cybop/debug/TEST_OUTER_LOOP_PRE.txt"/>
-  </node>
-  
   <!-- The break condition has to be GREATER-tested ONCE BEFORE calling the loop, since this is a post-test loop. -->
   <node name="compare_loop_count" channel="inline" format="compare/greater" model="">
     <node name="result" channel="inline" format="path/knowledge" model=".app.data.break_outer"/>
@@ -17,20 +7,9 @@
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
     <node name="selection" channel="inline" format="text/plain" model="all"/>
   </node>
-  
-  <!-- call loop body method -->
+  <!-- call outer loop body method -->
   <node name="print_numbers" channel="inline" format="flow/loop" model="">
     <node name="break" channel="inline" format="path/knowledge" model=".app.data.break_outer"/>
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_outer_loop_body"/>
-  </node>
-  
-  <!-- DEBUG - INFOS : Write knowledge tree into file. -->
-  <node name="test_knowledge_tree_outer_loop_post" channel="inline" format="communicate/send" model="">
-    <node name="channel" channel="inline" format="meta/channel" model="file"/>
-    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
-    <node name="language" channel="inline" format="meta/language" model="text/model-diagram"/>
-    <node name="format" channel="inline" format="meta/format" model="element/part"/>
-    <node name="message" channel="inline" format="path/knowledge" model=".app.data"/>
-    <node name="receiver" channel="inline" format="text/plain" model="cybop/debug/TEST_OUTER_LOOP_POST.txt"/>
   </node>
 </node>
