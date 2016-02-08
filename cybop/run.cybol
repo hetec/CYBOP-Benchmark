@@ -26,6 +26,18 @@
   <node name="add" channel="inline" format="flow/sequence" model="">
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_add"/>
   </node>
+  <!-- call sub method -->
+  <node name="sub" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_sub"/>
+  </node>
+  <!-- call abs method -->
+  <node name="abs" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_abs"/>
+  </node>
+  <!-- call mul method -->
+  <node name="mul" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_mul"/>
+  </node>
   <!-- exit application -->
   <node name="exit_application" channel="inline" format="live/exit" model=""/>
 </node>

@@ -4,4 +4,7 @@
   <!-- init logic -->
   <node name="logic_add" channel="file" format="element/part" model="cybop/logic/add.cybol"/>
   <node name="logic_div" channel="file" format="element/part" model="cybop/logic/div.cybol"/>
+  <node name="logic_sub" channel="file" format="element/part" model="cybop/logic/sub.cybol"/>
+  <node name="logic_abs" channel="file" format="element/part" model="cybop/logic/abs.cybol"/>
+  <node name="logic_mul" channel="file" format="element/part" model="cybop/logic/mul.cybol"/>
 </node>
