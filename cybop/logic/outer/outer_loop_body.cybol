@@ -1,4 +1,28 @@
 <node>
+  <!-- print outer counter number -->
+  <!--<node name="print_number" channel="inline" format="communicate/send" model="">
+    <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
+    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
+    <node name="language" channel="inline" format="meta/language" model="message/cli"/>
+    <node name="format" channel="inline" format="meta/format" model="number/integer"/>
+    <node name="message" channel="inline" format="path/knowledge" model=".app.data.counter_start_outer_value"/>
+    <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
+  </node>-->
+  
+  <!-- increment loop counter result -->
+  <node name="increment_loop_count_result" channel="inline" format="calculate/add" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_outer_result"/>
+    <node name="operand" channel="inline" format="number/integer" model="1"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
+  <!-- increment outer loop counter -->
+  <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_outer_value"/>
+    <node name="operand" channel="inline" format="number/integer" model="1"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
   <!-- call div method -->
   <node name="div" channel="inline" format="flow/sequence" model="">
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_div"/>
@@ -27,20 +51,6 @@
   <!-- call inner loop method -->
   <node name="inner_loop" channel="inline" format="flow/sequence" model="">
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_inner_loop"/>
-  </node>
-  
-  <!-- increment outer loop counter -->
-  <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
-    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_outer_value"/>
-    <node name="operand" channel="inline" format="number/integer" model="1"/>
-    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
-  </node>
-  
-  <!-- increment loop counter result -->
-  <node name="increment_loop_count_result" channel="inline" format="calculate/add" model="">
-    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_outer_result"/>
-    <node name="operand" channel="inline" format="number/integer" model="1"/>
-    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
   </node>
   
   <!-- CAUTION! The break condition has to be GREATER-tested AFTER having incremented the loop index, since this is a post-test loop. -->

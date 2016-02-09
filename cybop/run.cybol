@@ -26,8 +26,13 @@
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_outer_loop"/>
   </node>
   
+  <!-- call inner loop method -->
+  <!--<node name="inner_loop" channel="inline" format="flow/sequence" model="">
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_inner_loop"/>
+  </node>-->
+  
   <!-- call result method -->
-  <node name="outer_loop" channel="inline" format="flow/sequence" model="">
+  <node name="calc_result" channel="inline" format="flow/sequence" model="">
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_result"/>
   </node>
   

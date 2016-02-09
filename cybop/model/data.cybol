@@ -17,7 +17,7 @@
   
   <!-- loop counter result -->
   <node name="counter_outer_result" channel="inline" format="number/integer" model="0"/>
-  <node name="counter_inner_result" channel="inline" format="number/method" model="0"/>
+  <node name="counter_inner_result" channel="inline" format="number/integer" model="0"/>
   
   <!-- loop counter max values -->
   <node name="limit_outer" channel="inline" format="number/integer" model="10000"/>
