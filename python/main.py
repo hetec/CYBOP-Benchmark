@@ -14,24 +14,30 @@ def absolute(num):
     return num if num > 0 else num * -1
     
 def loop(start, end):
+    inner = 0
     while start < end:
         start = start + 1;
-        printEachSecondValue(start)
+        inner = printEachSecondValue(start, inner)
+
+    return inner
         
-def printEachSecondValue(value):
+def printEachSecondValue(value, inner):
     if value % 2 == 0:
-        print "Value i = " + str(value) 
+        inner += 1
+    return inner
 
 counter = 0
 limit = 10000
+result = 0
 while counter < limit:
     test = division(limit, 3)
     test = addition(test, test)
     test = substraction(test, limit)
     test = absolute(test)
     test = multiplication(test,test)
-    loop(0, 1000)
+    result += loop(0, 10000)
     counter = counter + 1
     
+print "Result python: " + str(result)
     
     

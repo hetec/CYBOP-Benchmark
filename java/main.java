@@ -21,17 +21,20 @@ class Main {
     return a < 0 ? (a * -1) : a;  
   }
 
-  private static void printValue(long value) {
+  private static long printValue(long value, long inner) {
     if (value % 2 == 0) {
-      System.out.println("Value i = " + value);
+      inner++;
     }
+    return inner;
   }
 
-  private static void innerLoop(long counter, long limit) {
-    while (counter <= limit) {
+  private static long innerLoop(long counter, long limit) {
+    long inner = 0;
+    while (counter < limit) {
       counter++; 
-      printValue(counter);
+      inner = printValue(counter, inner);
     }
+    return inner;
   }
 
 
@@ -40,8 +43,8 @@ class Main {
     long test;
     long counter = 0;
     long limit = 10000;
-
-    while (counter <= limit) {
+    long result = 0;
+    while (counter < limit) {
       
       test = (long) division(limit, 3);
       test = addition(test, test);
@@ -49,11 +52,11 @@ class Main {
       test = absolute(test);
       test = multiply(test, test);
       
-      innerLoop(0, 1000);
-      
+      result += innerLoop(0, 10000);
       counter++;
-  
     }
+
+    System.out.println("Result java: " + result);
   }
   
 }

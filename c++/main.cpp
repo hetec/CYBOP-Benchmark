@@ -4,36 +4,39 @@ using namespace std;
 
 
 long addition(long a, long b) {
-  return a + b;
+  return (a + b);
 }
 
-long substraction(long a, long b) {
-  return a - b;
+long substraction(long a, double b) {
+  return (a - b);
 }
 
 long multiply(long a, long b) {
-  return a * b;
+  return (a * b);
 }
 
 double division(double a, double b) {
-  return b == 0.0 ? 0.0 : a / b;
+  return (b == 0.0 ? 0.0 : (a) / b);
 }
 
 long absolute(long a) {
-  return a < 0 ? (a * -1) : a;  
+  return (a) < 0 ? ((a) * -1) : (a);  
 }
 
-void printValue(long value) {
+long printValue(long value, long inner) {
   if (value % 2 == 0) {
-    cout << "Value i = " << value << endl;
+    (inner)++;
   }
+  return inner;
 }
 
-void innerLoop(long counter, long limit) {
-  while (counter <= limit) {
+long innerLoop(long counter, long limit) {
+  long inner = 0;
+  while (counter < limit) {
     counter++; 
-    printValue(counter);
+    inner = printValue(counter, inner);
   }
+  return inner;
 }
 
 
@@ -41,9 +44,9 @@ int main() {
   
   long test;
   long counter = 0;
-  long limit = 10000;
-
-  while (counter <= limit) {
+  double limit = 10000;
+  long result = 0;
+  while (counter < limit) {
     
     test = division(limit, 3);
     test = addition(test, test);
@@ -51,11 +54,13 @@ int main() {
     test = absolute(test);
     test = multiply(test, test);
     
-    innerLoop(0, 10000);
+    result += innerLoop(0, 10000);
     
     counter++;
     
   }
   
+  cout << "Result c++: " << result << endl;
+
   return 0;
 }
