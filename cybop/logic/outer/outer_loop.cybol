@@ -1,0 +1,16 @@
+<node>
+  <!-- The break condition has to be GREATER-tested ONCE BEFORE calling the loop, since this is a post-test loop. -->
+  <node name="compare_loop_count" channel="inline" format="compare/greater" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.break_outer"/>
+    <node name="left" channel="inline" format="path/knowledge" model=".app.data.counter_start_outer_value"/>
+    <node name="right" channel="inline" format="path/knowledge" model=".app.data.limit_outer"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+    <node name="selection" channel="inline" format="text/plain" model="all"/>
+  </node>
+  
+  <!-- call outer loop body method -->
+  <node name="print_numbers" channel="inline" format="flow/loop" model="">
+    <node name="break" channel="inline" format="path/knowledge" model=".app.data.break_outer"/>
+    <node name="model" channel="inline" format="path/knowledge" model=".app.logic_outer_loop_body"/>
+  </node>
+</node>

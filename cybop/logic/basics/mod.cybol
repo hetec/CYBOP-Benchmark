@@ -1,0 +1,25 @@
+<node>
+  <!-- overwrite operation -->
+  <node name="overwrite_modulo_result" channel="inline" format="modify/overwrite" model="">
+    <node name="destination" channel="inline" format="path/knowledge" model=".app.data.modulo_result"/>
+    <node name="source" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
+  <!-- Operation -->
+  <node name="modulo" channel="inline" format="calculate/modulo" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.modulo_result"/>
+    <node name="operand" channel="inline" format="path/knowledge" model=".app.data.modulo"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
+  <!-- Print Values -->
+  <!--<node name="print_result" channel="inline" format="communicate/send" model="">
+    <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
+    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
+    <node name="language" channel="inline" format="meta/language" model="message/cli"/>
+    <node name="format" channel="inline" format="meta/format" model="number/integer"/>
+    <node name="message" channel="inline" format="path/knowledge" model=".app.data.modulo_result"/>
+    <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
+  </node>-->
+</node>

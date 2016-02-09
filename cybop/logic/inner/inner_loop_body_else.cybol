@@ -1,0 +1,24 @@
+<node>
+  <!-- increment inner loop counter -->
+  <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
+    <node name="operand" channel="inline" format="number/integer" model="1"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
+  <!-- CAUTION! The break condition has to be GREATER-tested AFTER having incremented the loop index, since this is a post-test loop. -->
+  <node name="compare_loop_count" channel="inline" format="compare/greater" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.break_inner"/>
+    <node name="left" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
+    <node name="right" channel="inline" format="path/knowledge" model=".app.data.limit_inner"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+    <node name="selection" channel="inline" format="text/plain" model="all"/>
+  </node>
+  
+  <!-- reset flag - modulo if check -->
+  <node name="reset_flag" channel="inline" format="modify/overwrite" model="">
+    <node name="destination" channel="inline" format="path/knowledge" model=".app.data.modulo_result_eq_zero"/>
+    <node name="source" channel="inline" format="logicvalue/boolean" model="false"/>
+    <node name="type" channel="inline" format="meta/type" model="logicvalue/boolean"/>
+  </node>
+</node>

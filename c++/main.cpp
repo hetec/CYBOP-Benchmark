@@ -20,7 +20,11 @@ double division(double a, double b) {
 }
 
 long absolute(long a) {
+<<<<<<< HEAD
   return (a) < 0 ? ((a) * -1) : (a);  
+=======
+  return a < 0 ? (a * -1) : a;
+>>>>>>> 8c2080953da4d84190ad90bf496c2b29ec84aac4
 }
 
 long printValue(long value, long inner) {
@@ -30,11 +34,18 @@ long printValue(long value, long inner) {
   return inner;
 }
 
+<<<<<<< HEAD
 long innerLoop(long counter, long limit) {
   long inner = 0;
   while (counter < limit) {
     counter++; 
     inner = printValue(counter, inner);
+=======
+void innerLoop(long counter, long limit) {
+  while (counter <= limit) {
+    counter++;
+    printValue(counter);
+>>>>>>> 8c2080953da4d84190ad90bf496c2b29ec84aac4
   }
   return inner;
 }

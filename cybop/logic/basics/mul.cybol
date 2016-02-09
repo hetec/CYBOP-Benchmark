@@ -1,0 +1,18 @@
+<node>
+  <!-- Operation -->
+  <node name="mul_operand" channel="inline" format="calculate/multiply" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.test"/>
+    <node name="operand" channel="inline" format="path/knowledge" model=".app.data.test"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
+  <!-- Print Values -->
+  <!--<node name="print_result" channel="inline" format="communicate/send" model="">
+    <node name="channel" channel="inline" format="meta/channel" model="terminal"/>
+    <node name="encoding" channel="inline" format="meta/encoding" model="utf-8"/>
+    <node name="language" channel="inline" format="meta/language" model="message/cli"/>
+    <node name="format" channel="inline" format="meta/format" model="number/integer"/>
+    <node name="message" channel="inline" format="path/knowledge" model=".app.data.test"/>
+    <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
+  </node>-->
+</node>
