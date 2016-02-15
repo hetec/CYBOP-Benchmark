@@ -31,35 +31,36 @@ runTimes(){
 		echo "ROUND $z"
 
 	    # call python script
-		timeStart=$(gdate +%s%N)
+		timeStart=$(date +%s%N)
 		python python/main.py
-		timeEnd=$(gdate +%s%N)
+		timeEnd=$(date +%s%N)
 		timePython=$(($timeEnd-$timeStart))
 
 		calcReadableTime $timePython "Current python time"
 
 		cd java
-		timeStart=$(gdate +%s%N)
+		timeStart=$(date +%s%N)
 		java Main
-		timeEnd=$(gdate +%s%N)
+		timeEnd=$(date +%s%N)
 		timeJava=$(($timeEnd-$timeStart))
 
 		calcReadableTime $timeJava "Current java time"
 
 		cd ../c++
-		timeStart=$(gdate +%s%N)
+		timeStart=$(date +%s%N)
 		./main
-		timeEnd=$(gdate +%s%N)
+		timeEnd=$(date +%s%N)
 		timeCPlusPlus=$(($timeEnd-$timeStart))
 
 		calcReadableTime $timeCPlusPlus "Current c++ time"
 
 		cd ..
-		timeStart=$(gdate +%s%N)
+		timeStart=$(date +%s%N)
 		cyboi cybop/run.cybol
-		timeEnd=$(gdate +%s%N)
+		timeEnd=$(date +%s%N)
 		timeCybop=$(($timeEnd-$timeStart))
 
+		calcReadableTime $timeCybop "Current cybop time"
 
 		timeSumPython=$(($timeSumPython+timePython))
 		timeSumJava=$(($timeSumJava+timeJava))
@@ -78,5 +79,5 @@ runTimes(){
 
 }
 
-runTenTimes 5
+runTimes 5
 
