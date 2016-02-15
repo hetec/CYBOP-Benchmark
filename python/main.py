@@ -1,3 +1,5 @@
+import os
+
 def addition(num1, num2):
     return num1 + num2
     
@@ -38,6 +40,6 @@ while counter < limit:
     result += loop(0, 10000)
     counter = counter + 1
     
-print "Result python: " + str(result)
+print "Result python: " + str(result) + os.linesep
     
     
