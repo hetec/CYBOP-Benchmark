@@ -21,7 +21,7 @@
   
   <!-- loop counter max values -->
   <node name="limit_outer" channel="inline" format="number/integer" model="10000"/>
-  <node name="limit_inner" channel="inline" format="number/integer" model="1000"/>
+  <node name="limit_inner" channel="inline" format="number/integer" model="10000"/>
   
   <!-- loop break conditions -->
   <node name="break_outer" channel="inline" format="logicvalue/boolean" model="false"/>

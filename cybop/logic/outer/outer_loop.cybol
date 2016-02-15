@@ -9,8 +9,10 @@
   </node>
   
   <!-- call outer loop body method -->
+  <!--
   <node name="print_numbers" channel="inline" format="flow/loop" model="">
     <node name="break" channel="inline" format="path/knowledge" model=".app.data.break_outer"/>
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_outer_loop_body"/>
   </node>
+  -->
 </node>
