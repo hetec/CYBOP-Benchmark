@@ -14,11 +14,11 @@ calcReadableTime(){
 	#echo "micro=$micro"
 	remainingNs=$(($remainingNs-($micro*1000)))
 	#echo "remaining ns=$remainingNs"
-	echo ""
-	echo "$2: $sec s $milli ms $micro mis $remainingNs ns"
+	#echo ""
+	#echo "$2: $sec s $milli ms $micro mis $remainingNs ns"
 	t=$(bc -l <<< "$1/1000000000")
-	echo "$2: $t"
-	echo ""
+	#echo "$2: $t"
+	echo "$t"
 }
 
 runTimes(){
@@ -32,99 +32,106 @@ runTimes(){
 	memCSum=0
 	memCybopSum=0
 	
-	for ((z=0;z<10;z++))
+	for ((z=0;z<$1;z++))
 	do
-		echo "ROUND $z"
-
+		#echo "ROUND $z"
 		#PYTHON
 		#time
-		timeStart=$(date +%s%N)
-		python python/main.py
-		timeEnd=$(date +%s%N)
+		timeStart=$(gdate +%s%N)
+        #python /Users/patrick/Documents/projects/CYBOP-Benchmark/python/main.py
+		timeEnd=$(gdate +%s%N)
 		timePython=$(($timeEnd-$timeStart))
 		
 		#memory
-		memPython=$((/usr/bin/time -f%M python python/main.py 1>/dev/null 1>/dev/null) 2>&1)
+        #memPython=$((gtime -f%M python python/main.py 1>/dev/null 1>/dev/null) 2>&1)
 		
 		#Convert time to human readable version
-		calcReadableTime $timePython "Current python time"
+		#calcReadableTime $timePython "Current python time"
 		
-		echo "MEM PYTON: $memPython"
+        #echo "MEM PYTON: $memPython"
 
 		#JAVA
 		#time
 		#go to the java directory
-		cd java
-		timeStart=$(date +%s%N)
-		java Main
-		timeEnd=$(date +%s%N)
+        #cd java
+		timeStart=$(gdate +%s%N)
+		java -cp /Users/patrick/Documents/projects/CYBOP-Benchmark/java/ Main
+		timeEnd=$(gdate +%s%N)
 		timeJava=$(($timeEnd-$timeStart))
 
 		#memory
-		memJava=$((/usr/bin/time -f%M java -Xms128k -Xmx128k Main 1>/dev/null 1>/dev/null) 2>&1)
-		
+        memJava=$((gtime -f%M java -cp /Users/patrick/Documents/projects/CYBOP-Benchmark/java/ Main 1>/dev/null 1>/dev/null) 2>&1)
 		#Convert time to human readable version
-		calcReadableTime $timeJava "Current java time"
+		#calcReadableTime $timeJava "Current java time"
 		
-		echo "MEM JAVA: $memJava"
+        #echo "MEM JAVA: $memJava"
 		
 		#C++
 		#time
 		#go to the c++ directory
-		cd ../c++
-		timeStart=$(date +%s%N)
-		./main
-		timeEnd=$(date +%s%N)
+		#cd ../c++
+		timeStart=$(gdate +%s%N)
+		/Users/patrick/Documents/projects/CYBOP-Benchmark/c++/main
+		timeEnd=$(gdate +%s%N)
 		timeCPlusPlus=$(($timeEnd-$timeStart))
 
 		#memory
-		memC=$((/usr/bin/time -f%M ./main 1>/dev/null 1>/dev/null) 2>&1)
+        memC=$((gtime -f%M /Users/patrick/Documents/projects/CYBOP-Benchmark/c++/main 1>/dev/null 1>/dev/null) 2>&1)
 
 		#Convert time to human readable version
-		calcReadableTime $timeCPlusPlus "Current c++ time"
+		#calcReadableTime $timeCPlusPlus "Current c++ time"
 		
-		echo "MEM C++ $memC"
+        #echo "MEM C++ $memC"
 		 
 		#CYBOP
 		#time
 		#go to CYBOP-BENCHMARK directory
-		cd ..
-		timeStart=$(date +%s%N)
-		cyboi cybop/run.cybol
-		timeEnd=$(date +%s%N)
-		timeCybop=$(($timeEnd-$timeStart))
+        #cd ..
+        #timeStart=$(gdate +%s%N)
+        #cyboi cybop/run.cybol
+        #timeEnd=$(gdate +%s%N)
+        #timeCybop=$(($timeEnd-$timeStart))
 		
 		#memory
-		memCybop=$((/usr/bin/time -f%M cyboi cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
+        #memCybop=$((/usr/bin/time -f%M cyboi cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
 
 		#Convert time to human readable version
-		calcReadableTime $timeCybop "Current cybop time"
+        #calcReadableTime $timeCybop "Current cybop time"
 
-		echo "MEM Cybop $memCybop"
+        #echo "MEM Cybop $memCybop"
 		
 		#Add current time to the sum value
 		timeSumPython=$(($timeSumPython+$timePython))
 		timeSumJava=$(($timeSumJava+$timeJava))
 		timeSumC=$(($timeSumC+$timeCPlusPlus))
-		timeSumCybop=$(($timeSumCybop+$timeCybop))
+        #timeSumCybop=$(($timeSumCybop+$timeCybop))
 		
 		#Add current memory to the sum value
-		memPythonSum=$(($memPythonSum+$memPython))
+		#memPythonSum=$(($memPythonSum+$memPython))
 		memJavaSum=$(($memJavaSum+$memJava))
 		memCSum=$(($memCSum+$memC))
-		memCybopSum=$(($memCybopSum+$memCybop))
+        #memCybopSum=$(($memCybopSum+$memCybop))
 	done
 	avgTimePython=$((timeSumPython/$1))
 	avgTimeJava=$((timeSumJava/$1))
 	avgTimeC=$((timeSumC/$1))
-	avgTimeCybop=$((timeSumCybop/$1))
+    avgTimeCybop=$((timeSumCybop/$1))
 
-	calcReadableTime $avgTimePython "PYTHON"
+    avgMemPython=$((memPythonSum/$1))
+    avgMemJava=$((memJavaSum/$1))
+    avgMemC=$((memCSum/$1))
+    avgMemPython=$((memCybopSum/$1))
+
+	
 	calcReadableTime $avgTimeJava "JAVA"
 	calcReadableTime $avgTimeC "C++"
-	calcReadableTime $avgTimeCybop "CYBOP"
+	calcReadableTime $avgTimePython "PYTHON"
+    calcReadableTime $avgTimeCybop "CYBOP"
+    echo $avgMemJava
+    echo $avgMemC
+    echo $avgTimeCybop
 
 }
 
-runTimes 5
+runTimes 1
 

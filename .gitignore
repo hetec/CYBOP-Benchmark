@@ -1,2 +1,3 @@
 Java/*.class
 C++/*.o
+.idea/*

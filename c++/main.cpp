@@ -59,7 +59,7 @@ int main() {
     
   }
   
-  cout << "Result c++: " << result << endl;
+  //cout << "Result c++: " << result << endl;
 
   return 0;
 }

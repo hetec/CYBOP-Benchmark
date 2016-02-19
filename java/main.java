@@ -56,7 +56,7 @@ class Main {
       counter++;
     }
 
-    System.out.println("Result java: " + result);
+    //System.out.println("Result java: " + result);
   }
   
 }

@@ -40,6 +40,6 @@ while counter < limit:
     result += loop(0, 10000)
     counter = counter + 1
     
-print "Result python: " + str(result) + os.linesep
+#print "Result python: " + str(result) + os.linesep
     
     
