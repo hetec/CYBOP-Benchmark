@@ -1,24 +1,30 @@
 #!/bin/bash
 
+localPath=$1
+
 calcReadableTime() {
   calculatedTime=$1
   sec=$(($calculatedTime/1000000000))
-  #echo "sec=$sec"
   remainingNs=$(($calculatedTime-($sec*1000000000)))
-  #echo "remaining ns=$remainingNs"
   milli=$(($remainingNs/1000000))
-  #echo "milli=$milli"
   remainingNs=$(($remainingNs-($sec*1000000)))
-  #echo "remaining ns=$remainingNs"
   micro=$(($remainingNs/1000))
-  #echo "micro=$micro"
   remainingNs=$(($remainingNs-($micro*1000)))
-  #echo "remaining ns=$remainingNs"
-  #echo ""
   #echo "$2: $sec s $milli ms $micro mis $remainingNs ns"
   t=$(bc -l <<< "$1/1000000000")
   #echo "$2: $t"
   echo "$t"
+}
+
+printResultForViewer() {
+  echo $1
+  echo $2
+  echo $3
+  echo $4
+  echo $5
+  echo $6
+  echo $7
+  echo $8
 }
 
 printResult() {
@@ -44,12 +50,10 @@ runTimes() {
   timePythonSum=0
   timeJavaSum=0
   timeCPlusPlusSum=0
-  timeCybopSum=0
   
   memPythonSum=0
   memJavaSum=0
   memCPlusPlusSum=0
-  memCybopSum=0
   
   for ((z=0;z<$1;z++))
   do
@@ -62,13 +66,13 @@ runTimes() {
     if [ $user_os == "LINUX" ]
     then
       timeStart=$(date +%s%N)
-      python $HOME/Dokumente/CYBOP-Benchmark/python/main.py
+      python $localPath/python/main.py
       timeEnd=$(date +%s%N)
       timePython=$(($timeEnd-$timeStart))
     elif [ $user_os == "OSX" ]
     then
       timeStart=$(gdate +%s%N)
-      python $HOME/Dokumente/CYBOP-Benchmark/python/main.py
+      python $localPath/python/main.py
       timeEnd=$(gdate +%s%N)
       timePython=$(($timeEnd-$timeStart))
     else
@@ -78,10 +82,10 @@ runTimes() {
     #memory
     if [ $user_os == "LINUX" ]
     then
-      memPython=$((/usr/bin/time -f%M python $HOME/Dokumente/CYBOP-Benchmark/python/main.py 1>/dev/null 1>/dev/null) 2>&1)
+      memPython=$((/usr/bin/time -f%M python $localPath/python/main.py 1>/dev/null 1>/dev/null) 2>&1)
     elif [ $user_os == "OSX" ]
     then
-      memPython=$((gtime -f%M python $HOME/Dokumente/CYBOP-Benchmark/python/main.py 1>/dev/null 1>/dev/null) 2>&1)
+      memPython=$((gtime -f%M python $localPath/python/main.py 1>/dev/null 1>/dev/null) 2>&1)
     else
       echo "ToDo: PYTHON - Memory - Add more OS Types"
     fi
@@ -94,13 +98,13 @@ runTimes() {
     if [ $user_os == "LINUX" ]
     then
       timeStart=$(date +%s%N)
-      java -cp $HOME/Dokumente/CYBOP-Benchmark/java Main
+      java -cp $localPath/java Main
       timeEnd=$(date +%s%N)
       timeJava=$(($timeEnd-$timeStart))
     elif [ $user_os == "OSX" ]
     then
       timeStart=$(gdate +%s%N)
-      java -cp $HOME/Dokumente/CYBOP-Benchmark/java Main
+      java -cp $localPath/java Main
       timeEnd=$(gdate +%s%N)
       timeJava=$(($timeEnd-$timeStart))
     else
@@ -110,10 +114,10 @@ runTimes() {
     #memory
     if [ $user_os == "LINUX" ]
     then
-      memJava=$((/usr/bin/time -f%M java -cp $HOME/Dokumente/CYBOP-Benchmark/java/ Main 1>/dev/null 1>/dev/null) 2>&1)
+      memJava=$((/usr/bin/time -f%M java -cp $localPath/java/ Main 1>/dev/null 1>/dev/null) 2>&1)
     elif [ $user_os == "OSX" ]
     then
-      memJava=$((gtime -f%M java -cp $HOME/Dokumente/CYBOP-Benchmark/java/ Main 1>/dev/null 1>/dev/null) 2>&1)
+      memJava=$((gtime -f%M java -cp $localPath/java/ Main 1>/dev/null 1>/dev/null) 2>&1)
     else
       echo "ToDo: JAVA - Memory - Add more OS Types"
     fi
@@ -126,13 +130,13 @@ runTimes() {
     if [ $user_os == "LINUX" ]
     then
       timeStart=$(date +%s%N)
-      $HOME/Dokumente/CYBOP-Benchmark/c++/main
+      $localPath/c++/main
       timeEnd=$(date +%s%N)
       timeCPlusPlus=$(($timeEnd-$timeStart))
     elif [ $user_os == "OSX" ]
     then
       timeStart=$(gdate +%s%N)
-      $HOME/Dokumente/CYBOP-Benchmark/c++/main
+      $localPath/c++/main
       timeEnd=$(gdate +%s%N)
       timeCPlusPlus=$(($timeEnd-$timeStart))
     else
@@ -142,58 +146,24 @@ runTimes() {
     #memory
     if [ $user_os == "LINUX" ]
     then
-      memCPlusPlus=$((/usr/bin/time -f%M $HOME/Dokumente/CYBOP-Benchmark/c++/main 1>/dev/null 1>/dev/null) 2>&1)
+      memCPlusPlus=$((/usr/bin/time -f%M $localPath/c++/main 1>/dev/null 1>/dev/null) 2>&1)
     elif [ $user_os == "OSX" ]
     then
-      memCPlusPlus=$((gtime -f%M $HOME/Dokumente/CYBOP-Benchmark/c++/main 1>/dev/null 1>/dev/null) 2>&1)
+      memCPlusPlus=$((gtime -f%M $localPath/c++/main 1>/dev/null 1>/dev/null) 2>&1)
     else
       echo "ToDo: C++ - Memory - Add more OS Types"
     fi
-    
-    
-    #------------#
-    #   CYBOP    #
-    #------------#
-    #time
-    if [ $user_os == "LINUX" ]
-    then
-      timeStart=$(date +%s%N)
-      cyboi $HOME/Dokumente/CYBOP-Benchmark/cybop/run.cybol
-      timeEnd=$(date +%s%N)
-      timeCybop=$(($timeEnd-$timeStart))
-    elif [ $user_os == "OSX" ]
-    then
-      timeStart=$(gdate +%s%N)
-      cyboi $HOME/Dokumente/CYBOP-Benchmark/cybop/run.cybol
-      timeEnd=$(gdate +%s%N)
-      timeCybop=$(($timeEnd-$timeStart))
-    else
-      echo "ToDo: CYBOP - Time - Add more OS Types"
-    fi
-    
-    #memory
-    if [ $user_os == "LINUX" ]
-    then
-      memCybop=$((/usr/bin/time -f%M cyboi $HOME/Dokumente/CYBOP-Benchmark/cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
-    elif [ $user_os == "OSX" ]
-    then
-      memCybop=$((gtime -f%M cyboi $HOME/Dokumente/CYBOP-Benchmark/cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
-    else
-      echo "ToDo: CYBOP - Memory - Add more OS Types"
-    fi
-    
+       
     
     #Add current time to the sum value
     timePythonSum=$(($timePythonSum+$timePython))
     timeJavaSum=$(($timeJavaSum+$timeJava))
     timeCPlusPlusSum=$(($timeCPlusPlusSum+$timeCPlusPlus))
-    timeCybopSum=$(($timeCybopSum+$timeCybop))
     
     #Add current memory to the sum value
     memPythonSum=$(($memPythonSum+$memPython))
     memJavaSum=$(($memJavaSum+$memJava))
     memCPlusPlusSum=$(($memCPlusPlusSum+$memCPlusPlus))
-    memCybopSum=$(($memCybopSum+$memCybop))
   
   done
   
@@ -203,7 +173,6 @@ runTimes() {
   avgTimePython=$((timePythonSum/$1))
   avgTimeJava=$((timeJavaSum/$1))
   avgTimeCPlusPlus=$((timeCPlusPlusSum/$1))
-  avgTimeCybop=$((timeCybopSum/$1))
   
   #---------------#
   #   AVG MEM     #
@@ -211,7 +180,6 @@ runTimes() {
   avgMemPython=$((memPythonSum/$1))
   avgMemJava=$((memJavaSum/$1))
   avgMemCPlusPlus=$((memCPlusPlusSum/$1))
-  avgMemCybop=$((memCybopSum/$1))
   
   #-------------------#
   #   READABLE TIME   #
@@ -219,15 +187,19 @@ runTimes() {
   readableTimePython=$(calcReadableTime $avgTimePython)
   readableTimeJava=$(calcReadableTime $avgTimeJava)
   readableTimeCPlusPlus=$(calcReadableTime $avgTimeCPlusPlus)
-  readableTimeCybop=$(calcReadableTime $avgTimeCybop)
   
   #---------------#
   #   OUTPUT      #
   #---------------#
+  printResultForViewer $readableTimePython $readableTimeJava \
+		       $readableTimeCPlusPlus -1 \
+		       $avgMemPython $avgMemJava \
+		       $avgMemCPlusPlus -1
+
   printResult $readableTimePython $avgMemPython \
               $readableTimeJava $avgMemJava \
               $readableTimeCPlusPlus $avgMemCPlusPlus \
-              $readableTimeCybop $avgMemCybop
+              -1 -1
 }
 
-runTimes 1
+runTimes $2
