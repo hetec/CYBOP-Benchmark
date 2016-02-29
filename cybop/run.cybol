@@ -27,9 +27,9 @@
   </node>
   
   <!-- call result method -->
-  <!--<node name="calc_result" channel="inline" format="flow/sequence" model="">
+  <node name="calc_result" channel="inline" format="flow/sequence" model="">
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_result"/>
-  </node>-->
+  </node>
   
   <!-- exit application -->
   <node name="exit_application" channel="inline" format="live/exit" model=""/>

@@ -19,13 +19,6 @@
     <node name="newline" channel="inline" format="logicvalue/boolean" model="true"/>
   </node>-->
   
-  <!-- increment inner loop counter -->
-  <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
-    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
-    <node name="operand" channel="inline" format="number/integer" model="1"/>
-    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
-  </node>
-  
   <!-- increment loop counter result -->
   <node name="increment_loop_count_result" channel="inline" format="calculate/add" model="">
     <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_inner_result"/>
@@ -33,8 +26,15 @@
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
   </node>
   
+  <!-- increment inner loop counter -->
+  <node name="increment_loop_count" channel="inline" format="calculate/add" model="">
+    <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
+    <node name="operand" channel="inline" format="number/integer" model="1"/>
+    <node name="type" channel="inline" format="meta/type" model="number/integer"/>
+  </node>
+  
   <!-- CAUTION! The break condition has to be GREATER-tested AFTER having incremented the loop index, since this is a post-test loop. -->
-  <node name="compare_loop_count" channel="inline" format="compare/greater" model="">
+  <node name="compare_loop_count" channel="inline" format="compare/greater-or-equal" model="">
     <node name="result" channel="inline" format="path/knowledge" model=".app.data.break_inner"/>
     <node name="left" channel="inline" format="path/knowledge" model=".app.data.counter_start_inner_value"/>
     <node name="right" channel="inline" format="path/knowledge" model=".app.data.limit_inner"/>

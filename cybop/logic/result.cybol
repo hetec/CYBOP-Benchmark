@@ -1,24 +1,24 @@
 <node>
   <!-- overwrite operation -->
-  <node name="overwrite_counter_outer_result" channel="inline" format="modify/overwrite" model="">
+  <!--<node name="overwrite_counter_outer_result" channel="inline" format="modify/overwrite" model="">
     <node name="destination" channel="inline" format="path/knowledge" model=".app.data.counter_outer_result"/>
     <node name="source" channel="inline" format="path/knowledge" model=".app.data.limit_outer"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
-  </node>
+  </node>-->
   
   <!-- overwrite operation -->
-  <node name="overwrite_counter_inner_result" channel="inline" format="modify/overwrite" model="">
+  <!--<node name="overwrite_counter_inner_result" channel="inline" format="modify/overwrite" model="">
     <node name="destination" channel="inline" format="path/knowledge" model=".app.data.counter_inner_result"/>
     <node name="source" channel="inline" format="path/knowledge" model=".app.data.limit_inner"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
-  </node>
+  </node>-->
   
   <!-- div operation -->
-  <node name="div_operand" channel="inline" format="calculate/divide" model="">
+  <!--<node name="div_operand" channel="inline" format="calculate/divide" model="">
     <node name="result" channel="inline" format="path/knowledge" model=".app.data.counter_inner_result"/>
     <node name="operand" channel="inline" format="path/knowledge" model=".app.data.modulo"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
-  </node>
+  </node>-->
   
   <!-- Operation -->
   <node name="mul_operand_result" channel="inline" format="calculate/multiply" model="">

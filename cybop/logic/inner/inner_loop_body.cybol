@@ -4,6 +4,13 @@
     <node name="model" channel="inline" format="path/knowledge" model=".app.logic_mod"/>
   </node>
   
+  <!-- if mod result equal 0, then print value -->
+  <node name="if-then" channel="inline" format="flow/branch" model="">
+    <node name="criterion" channel="inline" format="path/knowledge" model=".app.data.modulo_result_eq_zero"/>
+    <node name="true" channel="inline" format="path/knowledge" model=".app.logic_inner_loop_body_if"/>
+    <node name="false" channel="inline" format="path/knowledge" model=".app.logic_inner_loop_body_else"/>
+  </node>
+  
   <!-- check mod result -->
   <node name="compare_mod_result" channel="inline" format="compare/equal" model="">
     <node name="result" channel="inline" format="path/knowledge" model=".app.data.modulo_result_eq_zero"/>
@@ -11,12 +18,5 @@
     <node name="right" channel="inline" format="path/knowledge" model=".app.data.zero"/>
     <node name="type" channel="inline" format="meta/type" model="number/integer"/>
     <node name="selection" channel="inline" format="text/plain" model="all"/>
-  </node>
-  
-  <!-- if mod result equal 0, then print value -->
-  <node name="if-then" channel="inline" format="flow/branch" model="">
-    <node name="criterion" channel="inline" format="path/knowledge" model=".app.data.modulo_result_eq_zero"/>
-    <node name="true" channel="inline" format="path/knowledge" model=".app.logic_inner_loop_body_if"/>
-    <node name="false" channel="inline" format="path/knowledge" model=".app.logic_inner_loop_body_else"/>
   </node>
 </node>

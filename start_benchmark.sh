@@ -164,13 +164,13 @@ runTimes() {
     if [ $user_os == "LINUX" ]
     then
       timeStart=$(date +%s%N)
-      cyboi $localPath/cybop/run.cybol
+      $(cyboi cybop/run.cybol 1>/dev/null)
       timeEnd=$(date +%s%N)
       timeCybop=$(($timeEnd-$timeStart))
     elif [ $user_os == "OSX" ]
     then
       timeStart=$(gdate +%s%N)
-      cyboi $localPath/cybop/run.cybol
+      $(cyboi cybop/run.cybol 1>/dev/null)
       timeEnd=$(gdate +%s%N)
       timeCybop=$(($timeEnd-$timeStart))
     else
@@ -180,10 +180,10 @@ runTimes() {
     #memory
     if [ $user_os == "LINUX" ]
     then
-      memCybop=$((/usr/bin/time -f%M cyboi $localPath/cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
+      memCybop=$((/usr/bin/time -f%M cyboi cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
     elif [ $user_os == "OSX" ]
     then
-      memCybop=$((gtime -f%M cyboi $localPath/cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
+      memCybop=$((gtime -f%M cyboi cybop/run.cybol 1>/dev/null 1>/dev/null) 2>&1)
     else
       echo "ToDo: CYBOP - Memory - Add more OS Types"
     fi
