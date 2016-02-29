@@ -2,10 +2,11 @@
 
 Simple benchmark to compare CYBOL with other programming languages.
 
-Pseudocode:
+## **Pseudocode**
+-----------------
 
 ```
-loop from 0 to 1000000:
+loop from 0 to x:
   var test;
   test = Addition
   test = Substraction
@@ -16,9 +17,23 @@ loop from 0 to 1000000:
 end loop
   
 innerLoop():
-  loop from 0 to 100000:
+  outerResult = 0
+  loop from 0 to y:
     i++;
     if(i % 2 == 0):
-      print i;
-end loop      
+      innerResultCounter++
+  
+  outerResult += innerResultCounter
+end loop
 ```
+
+## **How to run**
+-----------------
+
+- navigate to CYBOB-Benchmark directory
+- run ./runner.sh loops
+- press start button of the GUI
+- Wait for the results
+
+_!Results are average values of all loops_
+
